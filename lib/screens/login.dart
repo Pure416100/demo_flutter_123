@@ -6,6 +6,7 @@
 
 import 'dart:convert';
 import 'dart:async';
+import 'package:finalproject/screens/test.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject/screens/catalog.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -28,53 +29,54 @@ class LoginScreen extends State<Login> {
     setState(() {
       visible = true;
     });
-
-    String email = emailController.text;
-    String password = passwordController.text;
-
     // SERVER LOGIN API URL
-    var url = 'http://​localhost/checklogin2.php';
 
-    var data = {'email': email, 'password': password};
+    Map<String, String> headers = {
+      'Content-Type': 'application/json',
+    };
 
-    // Starting Web API Call.
-    var response = await http.post(Uri.parse(url), body: json.encode(data));
+    String url = "http://10.10.0.252/login.php";
+    var response = await http.post(Uri.parse(url), body: {
+      "email": emailController.text,
+      "password": passwordController.text,
+    });
+    print(response.statusCode);
+    print(response.body);
 
-    // print(data);
-    // print(response);
-    // Getting Server response into variable.
-    // Getting Server response into variable.
-    // Getting Server response into variable.
-    Map result = jsonDecode(response.body) as Map<String, dynamic>;
-
-    // print(result['status']);
-    // print(result['message']);
-
-    print(result);
-
-    // If the Response Message is Matched.
-    if (result['status'] != '') {
+    if (response.statusCode == 200) {
       setState(() {
         visible = false;
       });
-
-      // Navigate to Profile Screen & Sending Email to Next Screen.
-      await (Navigator.push<String>(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MyCatalog(email: emailController.text))));
-    } else {
-      setState(() {
-        visible = false;
-      });
-
-      // Showing Alert Dialog with Response JSON Message.
       await showDialog<Widget>(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text(
-              result['message'].toString(),
+            title: const Text(
+              "Login Completed",
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: const Text("ตกลง"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      await (Navigator.push<String>(
+          context, MaterialPageRoute(builder: (context) => Test())));
+    } else {
+      setState(() {
+        visible = false;
+      });
+      await showDialog<Widget>(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: const Text(
+              "Invalid Username or Password",
             ),
             actions: <Widget>[
               TextButton(
@@ -88,6 +90,28 @@ class LoginScreen extends State<Login> {
         },
       );
     }
+
+    // Navigate to Profile Screen & Sending Email to Next Screen.
+
+    //   // Showing Alert Dialog with Response JSON Message.
+    //   await showDialog<Widget>(
+    //     context: context,
+    //     builder: (BuildContext context) {
+    //       return AlertDialog(
+    //         title: Text(
+    //           result['message'].toString(),
+    //         ),
+    //         actions: <Widget>[
+    //           TextButton(
+    //             child: const Text("ตกลง"),
+    //             onPressed: () {
+    //               Navigator.of(context).pop();
+    //             },
+    //           ),
+    //         ],
+    //       );
+    //     },
+    // );
   }
 
   @override
@@ -100,11 +124,11 @@ class LoginScreen extends State<Login> {
               const SizedBox(
                 height: 70,
               ),
-              Image.asset(
-                "images/W.png",
-                width: 50,
-                height: 50,
-              ),
+              // Image.asset(
+              //   "images/W.png",
+              //   width: 50,
+              //   height: 50,
+              // ),
               const Padding(
                 padding: EdgeInsets.all(30.0),
                 child: Text(
@@ -165,40 +189,7 @@ class LoginScreen extends State<Login> {
               const SizedBox(height: 20),
               ElevatedButton.icon(
                 label: Text('เข้าสู่ระบบ'),
-                onPressed: () async {
-                  // SERVER LOGIN API URL
-                  var url = 'http://​localhost/checklogin2.php';
-                  // Map<String, dynamic> data = {
-                  //   'email': emailController.text,
-                  //   'password': passwordController.text
-                  // };
-
-                  // Starting Web API Call.
-                  var response = await http.post(Uri.parse(url),
-                      body: json.encode({
-                        'email': emailController.text,
-                        'password': passwordController.text
-                      }));
-
-                  if (response.statusCode == 200) {
-                    await showDialog<Widget>(
-                      context: context,
-                      builder: (BuildContext context) {
-                        return AlertDialog(
-                          title: Text('successs'),
-                          actions: <Widget>[
-                            TextButton(
-                              child: const Text("ตกลง"),
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
-                  }
-                },
+                onPressed: () => userLogin(),
                 style: ElevatedButton.styleFrom(
                     primary: Colors.grey[850],
                     shape: RoundedRectangleBorder(

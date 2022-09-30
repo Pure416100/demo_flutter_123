@@ -76,8 +76,7 @@ class _MyAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SliverAppBar(
-      title:
-          Text('รายการสินค้า', style: Theme.of(context).textTheme.displayLarge),
+      title: Text('Catalog', style: Theme.of(context).textTheme.displayLarge),
       floating: true,
       actions: [
         IconButton(
@@ -104,19 +103,22 @@ class _MyListItem extends StatelessWidget {
     var textTheme = Theme.of(context).textTheme.titleLarge;
 
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: LimitedBox(
         maxHeight: 48,
         child: Row(
           children: [
+            AspectRatio(
+              aspectRatio: 1,
+              child: Container(
+                color: item.color,
+              ),
+            ),
             const SizedBox(width: 24),
             Expanded(
               child: Text(item.name, style: textTheme),
             ),
-            Expanded(
-              child: Text("ราคา ${item.price.toString()}บาท"),
-            ),
-            SizedBox(width: 24),
+            const SizedBox(width: 24),
             _AddButton(item: item),
           ],
         ),

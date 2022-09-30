@@ -46,12 +46,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'ห่วงใยคุณ',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-        ),
-        home: const Login());
+    return ChangeNotifierProvider(
+        create: (context) => CartModel(),
+        child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'ห่วงใยคุณ',
+            theme: ThemeData(
+              primarySwatch: Colors.green,
+            ),
+            home: const Login()));
   }
 }

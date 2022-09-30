@@ -12,7 +12,7 @@ if($email == $host_user && $password ==$host_password )
   $result['message'] = 'Login Completed' ;
 }
 else {
-  $result['status'] = '' ;
+  $result['status'] = 'Error' ;
   $result['message'] = 'Invalid Username or Password' ;
 }
 echo json_encode($result) ;
