@@ -27,9 +27,7 @@ void main() {
         initialRoute: '/',
         routes: {
           '/': (context) => const Login(),
-          '/catalog': (context) => const MyCatalog(
-                email: '',
-              ),
+          '/catalog': (context) => const MyCatalog(),
         },
       ),
     ));

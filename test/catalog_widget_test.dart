@@ -21,9 +21,7 @@ Widget createCatalogScreen() => MultiProvider(
         ),
       ],
       child: const MaterialApp(
-        home: MyCatalog(
-          email: '',
-        ),
+        home: MyCatalog(),
       ),
     );
 

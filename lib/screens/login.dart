@@ -6,7 +6,8 @@
 
 import 'dart:convert';
 import 'dart:async';
-import 'package:finalproject/screens/test.dart';
+import 'package:finalproject/screens/admin.dart';
+import 'package:finalproject/screens/homescreen.dart';
 import 'package:flutter/material.dart';
 import 'package:finalproject/screens/catalog.dart';
 import 'package:json_annotation/json_annotation.dart';
@@ -66,7 +67,9 @@ class LoginScreen extends State<Login> {
         },
       );
       await (Navigator.push<String>(
-          context, MaterialPageRoute(builder: (context) => Test())));
+          context,
+          MaterialPageRoute(
+              builder: (_) => HomeScreen(email: emailController.text))));
     } else {
       setState(() {
         visible = false;
@@ -124,11 +127,11 @@ class LoginScreen extends State<Login> {
               const SizedBox(
                 height: 70,
               ),
-              // Image.asset(
-              //   "images/W.png",
-              //   width: 50,
-              //   height: 50,
-              // ),
+              Image.asset(
+                "assets/images/W.png",
+                width: 100,
+                height: 100,
+              ),
               const Padding(
                 padding: EdgeInsets.all(30.0),
                 child: Text(

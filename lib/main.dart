@@ -12,6 +12,7 @@ import 'package:finalproject/common/theme.dart';
 import 'package:finalproject/models/cart.dart';
 import 'package:finalproject/models/catalog.dart';
 import 'package:finalproject/screens/cart.dart';
+import 'package:finalproject/screens/homescreen.dart';
 import 'package:finalproject/screens/catalog.dart';
 import 'package:finalproject/screens/login.dart';
 import 'package:window_size/window_size.dart';
@@ -28,7 +29,7 @@ const double windowHeight = 800;
 void setupWindow() {
   if (!kIsWeb && (Platform.isWindows || Platform.isLinux || Platform.isMacOS)) {
     WidgetsFlutterBinding.ensureInitialized();
-    setWindowTitle('Provider Demo');
+    setWindowTitle('เพื่อนช็อป');
     setWindowMinSize(const Size(windowWidth, windowHeight));
     setWindowMaxSize(const Size(windowWidth, windowHeight));
     getCurrentScreen().then((screen) {
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
         create: (context) => CartModel(),
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: 'ห่วงใยคุณ',
+            title: 'เพื่อนช็อป',
             theme: ThemeData(
               primarySwatch: Colors.green,
             ),

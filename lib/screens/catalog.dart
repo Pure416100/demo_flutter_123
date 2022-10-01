@@ -3,14 +3,11 @@
 // found in the LICENSE file.
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:finalproject/models/cart.dart';
 import 'package:finalproject/models/catalog.dart';
 
 class MyCatalog extends StatelessWidget {
-  final String email;
-
-  const MyCatalog({super.key, required this.email});
+  const MyCatalog({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

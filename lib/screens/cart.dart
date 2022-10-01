@@ -13,12 +13,11 @@ class MyCart extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('รายการสั่งซื้อ',
-            style: Theme.of(context).textTheme.displayLarge),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.grey[900],
+        title: Text('ตะกร้าของฉัน'),
       ),
       body: Container(
-        color: Colors.yellow,
+        color: Colors.white,
         child: Column(
           children: [
             Expanded(
@@ -91,8 +90,8 @@ class _CartTotal extends StatelessWidget {
                 ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text('Buying not supported yet.')));
               },
-              style: TextButton.styleFrom(foregroundColor: Colors.white),
-              child: const Text('BUY'),
+              style: TextButton.styleFrom(foregroundColor: Colors.green),
+              child: const Text('ชำระสินค้า'),
             ),
           ],
         ),

@@ -52,7 +52,7 @@ dependencies:
   google_maps_flutter: ^2.1.2
   location: ^4.2.0
   google_maps: ^6.1.0
-  provider: ^6.0.3
+
   # map_markers: ^0.1.0
   window_size:
     git:
